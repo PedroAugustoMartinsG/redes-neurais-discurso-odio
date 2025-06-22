@@ -37,6 +37,16 @@ O projeto é dividido em duas etapas:
 
 ---
 
+## ⚠️ Visualização dos Notebooks
+
+O visualizador padrão do GitHub pode apresentar um erro (`Invalid Notebook: ... 'state' key is missing ...`) ao tentar renderizar os notebooks deste projeto. Isso ocorre por um problema de compatibilidade conhecido com os widgets de saída do treinamento no Google Colab.
+
+**Para visualizar os notebooks com todas as saídas (gráficos, tabelas e resultados), por favor, utilize os links do `nbviewer` abaixo, que renderizam os arquivos corretamente:**
+
+* **[Visualizar Notebook do RoBERTa](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/Redes_Neurais_RoBERTa.ipynb)**
+
+---
+
 ## Resultados da Parte 1 (Unimodal - Texto)
 
 Nesta etapa, foram avaliados 5 modelos diferentes para a tarefa de classificação binária ("Hate" vs "Não Hate").  Abaixo, a tabela consolidada com os resultados finais no conjunto de teste.
