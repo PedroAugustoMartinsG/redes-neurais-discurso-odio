@@ -55,17 +55,15 @@ Nesta etapa, foram avaliados cinco modelos diferentes para a tarefa de classific
 
 Originalmente, o dataset conta com seis categorias diferentes: Não Hate, Racista, Sexista, Homofóbico, Religião e Outros. Ao analisar a distribuição das labels, observa-se uma grande predominância da classe "Não Hate", enquanto as demais estão distribuídas de forma desigual e com representatividade bem menor. 
 
-<div style="text-align: center"><img src=
-"https://github.com/user-attachments/assets/cbeee146-a371-40d8-a380-3509f24ef1e1"
-width="42" height="42"></div>
+<img src="https://github.com/user-attachments/assets/cbeee146-a371-40d8-a380-3509f24ef1e1" width="500" />
 
 Por conta do desbalanceamento original, optou-se pela binarização das labels, ou seja, as categorias Racista, Sexista, Homofóbico, Religião e Outros foram agrupadas em uma única classe chamada Hate. Após essa transformação, a distribuição das classes ficou da seguinte forma:
 
-<img src="https://github.com/user-attachments/assets/cf03be18-b292-442a-9a1e-ff20f3fb5ed4" width="600" />
+<img src="https://github.com/user-attachments/assets/cf03be18-b292-442a-9a1e-ff20f3fb5ed4" width="500" />
 
 Apesar dessa binarização, ainda existe um desbalanceamento significativo entre as classes. Por isso, foi aplicado um undersampling na classe majoritária para equilibrar a quantidade de exemplos entre as duas classes.
 
-<img src="https://github.com/user-attachments/assets/6c301868-769f-4548-91a7-16146c9090cf" width="600" />
+<img src="https://github.com/user-attachments/assets/6c301868-769f-4548-91a7-16146c9090cf" width="500" />
 
 #### Tokenização
 
@@ -83,13 +81,10 @@ Uma abordagem com modelo BiLSTM (Bidirectional Long Short-Term Memory) e Word2Ve
 
 Com o método de undersampling aplicado a nossa base de dados obtemos os seguintes resultados:
 
-Acurácia: 0.6303
-
-Precisão: 0.5741
-
-Recall: 0.6390
-
-F1-Score: 0.6048
+* Acurácia: 0.6303
+* Precisão: 0.5741
+* Recall: 0.6390
+* F1-Score: 0.6048
 
 Também plotamos uma matriz de confusão que demonstrou um bom equilíbrio entre verdadeiros positivos e verdadeiros negativos, indicando que o modelo conseguiu generalizar razoavelmente bem para ambas as classes.
 
@@ -99,10 +94,10 @@ Para a tarefa de detecção de discurso de ódio, foi escolhido testar tambem o 
 
 A avaliação foi feita com a partição de teste, dando os seguintes resultados:
 
-Acurácia: 0,666
-Precisão: 0,616
-Recall: 0,653
-F1-score: 0,634
+* Acurácia: 0,666
+* Precisão: 0,616
+* Recall: 0,653
+* F1-score: 0,634
 
 A matriz de confusão mostrou que o modelo teve um desempenho razoável nas duas classes ("Hate" e "Não Hate"), apesar de alguns erros de classificação. Também foi analisada a curva de perda (loss) por época, que indicou sinais de overfitting, com a perda de validação aumentando ao longo do tempo. No entanto, como foi utilizado o early stopping, o treinamento foi interrompido no momento certo para evitar que o modelo se ajustasse demais aos dados de treino.
 
@@ -120,10 +115,10 @@ A abordagem implementada utiliza o modelo pré-treinado Llama-3-8B-Distil-MetaHa
 
 Com o conjunto de dados de teste passados como input para o modelo obtivemos os seguintes resultados:
 
-Acurácia: 0.5147
-Precisão: 0.5084
-Recall: 0.8511
-F1-Score: 0.6365
+* Acurácia: 0.5147
+* Precisão: 0.5084
+* Recall: 0.8511
+* F1-Score: 0.6365
 
 A análise de performance revelou características interessantes do modelo. A matriz de confusão demonstrou um desequilíbrio significativo, com alta sensibilidade para detectar hate speech (recall de 85.11%) mas baixa especificidade para casos não-hate speech (17.93% de acurácia). O modelo apresentou uma tendência pronunciada para classificar textos como hate speech, resultando em 3.725 falsos positivos contra apenas 674 falsos negativos. Esta característica indica um comportamento conservador do modelo, priorizando a detecção de possíveis casos de discurso de ódio.
 
