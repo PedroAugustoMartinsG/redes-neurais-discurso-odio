@@ -46,7 +46,7 @@ O visualizador padrão do GitHub pode apresentar um erro (`Invalid Notebook: ...
 * **[Visualizar Notebook do BiLSTM_Word2Vec_Classifier](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/BiLSTM_Word2Vec_Classifier.ipynb)**
 * **[Visualizar Notebook do BERT](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/BERT.ipynb)**
 * **[Visualizar Notebook do RoBERTa](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/Redes_Neurais_RoBERTa.ipynb)**
-* 
+* **[Visualizar Notebook do Llama Meta Hate](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/llamaMetaHate.ipynb)**
 ---
 
 ## Resultados da Parte 1 (Unimodal - Texto)
@@ -139,10 +139,10 @@ Abaixo, a tabela consolidada com os resultados finais no conjunto de teste.
 
 | Métrica | BiLSTM_Word2Vec_Classifier | BERT | RoBERTa | XLNet-Twitter-Analysis | Llama Meta Hate |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| *F1 (Hate)* | 0,60 | 0,63 | 0,62 | ... | 0,64 |
-| *Recall (Hate)* | 0,64 | 0,65 | 0,62 | ... | 0,85 |
-| *Precisão (Hate)* | 0,57 | 0,62 | 0,63 | ... | 0,51 |
-| *Acurácia Geral* | 0,63 | 0,67 | 0,67 | ... | 0,51 |
+| **F1 (Hate)** | 0,60 | 0,63 | 0,62 | ... | **0,64** |
+| **Recall (Hate)** | 0,64 | 0,65 | 0,62 | ... | **0,85** |
+| **Precisão (Hate)** | 0,57 | 0,62 | **0,63** | ... | 0,51 |
+| **Acurácia Geral** | 0,63 | **0,67** | **0,67** | ... | 0,51 |
 
 ### Análise e Conclusão da Parte 1
 
