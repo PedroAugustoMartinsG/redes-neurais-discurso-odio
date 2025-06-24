@@ -43,8 +43,10 @@ O visualizador padrão do GitHub pode apresentar um erro (`Invalid Notebook: ...
 
 **Para visualizar os notebooks com todas as saídas (gráficos, tabelas e resultados), por favor, utilize os links do `nbviewer` abaixo, que renderizam os arquivos corretamente:**
 
+* **[Visualizar Notebook do BiLSTM_Word2Vec_Classifier](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/BiLSTM_Word2Vec_Classifier.ipynb)**
+* **[Visualizar Notebook do BERT](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/BERT.ipynb)**
 * **[Visualizar Notebook do RoBERTa](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/Redes_Neurais_RoBERTa.ipynb)**
-
+* 
 ---
 
 ## Resultados da Parte 1 (Unimodal - Texto)
@@ -61,7 +63,7 @@ Por conta do desbalanceamento original, optou-se pela binarização das labels, 
 
 <img src="https://github.com/user-attachments/assets/cf03be18-b292-442a-9a1e-ff20f3fb5ed4" width="500" />
 
-Apesar dessa binarização, ainda existe um desbalanceamento significativo entre as classes. Por isso, foi aplicado um undersampling na classe majoritária para equilibrar a quantidade de exemplos entre as duas classes.
+Apesar dessa binarização, ainda existe um desbalanceamento significativo entre as classes. Por isso, foi aplicado um undersampling na classe majoritária para equilibrar a quantidade de exemplos entre as duas classes. Os conjuntos de validação e teste foram mantidos com a distribuição original para garantir que a avaliação do modelo reflita um cenário realista.
 
 <img src="https://github.com/user-attachments/assets/6c301868-769f-4548-91a7-16146c9090cf" width="500" />
 
@@ -81,10 +83,10 @@ Uma abordagem com modelo BiLSTM (Bidirectional Long Short-Term Memory) e Word2Ve
 
 Com o método de undersampling aplicado a nossa base de dados obtemos os seguintes resultados:
 
-* Acurácia: 0.6303
-* Precisão: 0.5741
-* Recall: 0.6390
-* F1-Score: 0.6048
+* Acurácia: 0,6303
+* Precisão: 0,5741
+* Recall: 0,6390
+* F1-Score: 0,6048
 
 Também plotamos uma matriz de confusão que demonstrou um bom equilíbrio entre verdadeiros positivos e verdadeiros negativos, indicando que o modelo conseguiu generalizar razoavelmente bem para ambas as classes.
 
@@ -103,8 +105,18 @@ A matriz de confusão mostrou que o modelo teve um desempenho razoável nas duas
 
 #### RoBERTa
 
-bla bla bla escreve alguma coisa do modelo, resultado etc
+Para esta análise, foi selecionada também uma variante especializada do RoBERTa, o modelo cardiffnlp/twitter-roberta-base-offensive. A escolha deste modelo se deve ao fato de ele já ser pré-treinado com milhões de tweets para identificar linguagem ofensiva.
 
+Os seguintes resultados foram alcançados no conjunto de teste:
+
+* Acurácia: 0,6700
+* Precisão: 0,6289
+* Recall: 0,6207
+* F1-Score: 0,6248
+
+
+O RoBERTa apresentou um bom equilíbrio entre Precisão (62,9%) e Recall (62,1%). A matriz de confusão revelou um modelo com um comportamento equilibrado, sem um viés extremo para nenhuma das classes. O número de Falsos Positivos (1621) e Falsos Negativos (1679) é relativamente próximo. Portanto, modelo aprendeu a identificar ambas as classes de forma moderada, mas ainda com uma margem de erro considerável para ambos os tipos de falha, o que é refletido em um F1-Score de 0,6248. Além disso, análise da dinâmica de treinamento ao longo das épocas revelou sinais de overfitting, com a performance no conjunto de validação atingindo seu pico na segunda época antes de começar a declinar. Para assegurar a robustez do resultado final, foi utilizado o mecanismo load_best_model_at_end=True, que retorna o modelo do checkpoint com a melhor performance de generalização, mitigando os efeitos do overfitting.
+    
 #### XLNet-Twitter-Analysis
 
 bla bla bla escreve alguma coisa do modelo, resultado etc
@@ -115,17 +127,22 @@ A abordagem implementada utiliza o modelo pré-treinado Llama-3-8B-Distil-MetaHa
 
 Com o conjunto de dados de teste passados como input para o modelo obtivemos os seguintes resultados:
 
-* Acurácia: 0.5147
-* Precisão: 0.5084
-* Recall: 0.8511
-* F1-Score: 0.6365
+* Acurácia: 0,5147
+* Precisão: 0,5084
+* Recall: 0,8511
+* F1-Score: 0,6365
 
 A análise de performance revelou características interessantes do modelo. A matriz de confusão demonstrou um desequilíbrio significativo, com alta sensibilidade para detectar hate speech (recall de 85.11%) mas baixa especificidade para casos não-hate speech (17.93% de acurácia). O modelo apresentou uma tendência pronunciada para classificar textos como hate speech, resultando em 3.725 falsos positivos contra apenas 674 falsos negativos. Esta característica indica um comportamento conservador do modelo, priorizando a detecção de possíveis casos de discurso de ódio.
 
 
 Abaixo, a tabela consolidada com os resultados finais no conjunto de teste.
 
-
+| Métrica | BiLSTM_Word2Vec_Classifier | BERT | RoBERTa | XLNet-Twitter-Analysis | Llama Meta Hate |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| *F1 (Hate)* | 0,60 | 0,63 | 0,62 | ... | 0,64 |
+| *Recall (Hate)* | 0,64 | 0,65 | 0,62 | ... | 0,85 |
+| *Precisão (Hate)* | 0,57 | 0,62 | 0,63 | ... | 0,51 |
+| *Acurácia Geral* | 0,63 | 0,67 | 0,67 | ... | 0,51 |
 
 ### Análise e Conclusão da Parte 1
 
