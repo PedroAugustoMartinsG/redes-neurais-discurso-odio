@@ -55,7 +55,9 @@ Nesta etapa, foram avaliados cinco modelos diferentes para a tarefa de classific
 
 Originalmente, o dataset conta com seis categorias diferentes: Não Hate, Racista, Sexista, Homofóbico, Religião e Outros. Ao analisar a distribuição das labels, observa-se uma grande predominância da classe "Não Hate", enquanto as demais estão distribuídas de forma desigual e com representatividade bem menor. 
 
-<img src="https://github.com/user-attachments/assets/cbeee146-a371-40d8-a380-3509f24ef1e1" width="600" />
+<div style="text-align: center"><img src=
+"https://github.com/user-attachments/assets/cbeee146-a371-40d8-a380-3509f24ef1e1"
+width="42" height="42"></div>
 
 Por conta do desbalanceamento original, optou-se pela binarização das labels, ou seja, as categorias Racista, Sexista, Homofóbico, Religião e Outros foram agrupadas em uma única classe chamada Hate. Após essa transformação, a distribuição das classes ficou da seguinte forma:
 
