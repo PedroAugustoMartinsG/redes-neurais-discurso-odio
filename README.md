@@ -117,9 +117,18 @@ Os seguintes resultados foram alcançados no conjunto de teste:
 
 O RoBERTa apresentou um bom equilíbrio entre Precisão (62,9%) e Recall (62,1%). A matriz de confusão revelou um modelo com um comportamento equilibrado, sem um viés extremo para nenhuma das classes. O número de Falsos Positivos (1621) e Falsos Negativos (1679) é relativamente próximo. Portanto, modelo aprendeu a identificar ambas as classes de forma moderada, mas ainda com uma margem de erro considerável para ambos os tipos de falha, o que é refletido em um F1-Score de 0,6248. Além disso, análise da dinâmica de treinamento ao longo das épocas revelou sinais de overfitting, com a performance no conjunto de validação atingindo seu pico na segunda época antes de começar a declinar. Para assegurar a robustez do resultado final, foi utilizado o mecanismo load_best_model_at_end=True, que retorna o modelo do checkpoint com a melhor performance de generalização, mitigando os efeitos do overfitting.
     
-#### XLNet-Twitter-Analysis
+#### XLNet
 
-bla bla bla escreve alguma coisa do modelo, resultado etc
+Foi avaliado também o modelo XLNet-base-cased, uma arquitetura baseada em transformadores que utiliza modelagem autoregressiva permutada para capturar padrões contextuais complexos em sequências de texto. O treinamento foi realizado com undersampling e poucas épocas, em razão de limitações de hardware que impediram uma exploração mais ampla dos hiperparâmetros.
+
+Os resultados no conjunto de teste foram:
+
+* Acurácia: 0,6508
+* Precisão: 0,7398
+* Recall: 0,3257
+* F1-Score: 0,4523
+
+Apesar da boa precisão, o modelo apresentou baixo recall, indicando dificuldade em identificar casos reais de discurso de ódio. A matriz de confusão confirmou uma tendência a favorecer a classe majoritária (não hate), gerando muitos falsos negativos. Além disso, a curva de perda sugeriu subajuste, com pouca melhoria ao longo do treino. No geral, o XLNet mostrou certo potencial, mas teve desempenho inferior aos demais modelos testados.
 
 #### Llama Meta Hate
 
@@ -137,12 +146,12 @@ A análise de performance revelou características interessantes do modelo. A ma
 
 Abaixo, a tabela consolidada com os resultados finais no conjunto de teste.
 
-| Métrica | BiLSTM_Word2Vec_Classifier | BERT | RoBERTa | XLNet-Twitter-Analysis | Llama Meta Hate |
+| Métrica | BiLSTM_Word2Vec_Classifier | BERT | RoBERTa | XLNet | Llama Meta Hate |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **F1 (Hate)** | 0,60 | 0,63 | 0,62 | ... | **0,64** |
-| **Recall (Hate)** | 0,64 | 0,65 | 0,62 | ... | **0,85** |
-| **Precisão (Hate)** | 0,57 | 0,62 | **0,63** | ... | 0,51 |
-| **Acurácia Geral** | 0,63 | **0,67** | **0,67** | ... | 0,51 |
+| **F1 (Hate)** | 0,60 | 0,63 | 0,62 | 0,45 | **0,64** |
+| **Recall (Hate)** | 0,64 | 0,65 | 0,62 | 0,32 | **0,85** |
+| **Precisão (Hate)** | 0,57 | 0,62 | 0,63 | **0,74** | 0,51 |
+| **Acurácia Geral** | 0,63 | **0,67** | **0,67** | 0,65 | 0,51 |
 
 ### Análise e Conclusão da Parte 1
 
