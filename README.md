@@ -75,15 +75,26 @@ Os modelos foram treinados conforme as especificações de cada um, adaptando os
 
 ### Avaliação dos Modelos
 
-#### O DO BH
+#### BiLSTM_Word2Vec_Classifier
+
+bla bla bla escreve alguma coisa do modelo, resultado etc
 
 #### BERTweet
 
+bla bla bla escreve alguma coisa do modelo, resultado etc
+
 #### RoBERTa
+
+bla bla bla escreve alguma coisa do modelo, resultado etc
 
 #### XLNet-Twitter-Analysis
 
-#### Llama
+bla bla bla escreve alguma coisa do modelo, resultado etc
+
+#### Llama Meta Hate
+
+bla bla bla escreve alguma coisa do modelo, resultado etc
+
 
 
 Abaixo, a tabela consolidada com os resultados finais no conjunto de teste.
