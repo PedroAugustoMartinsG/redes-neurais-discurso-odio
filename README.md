@@ -77,7 +77,19 @@ Os modelos foram treinados conforme as especificações de cada um, adaptando os
 
 #### BiLSTM_Word2Vec_Classifier
 
-bla bla bla escreve alguma coisa do modelo, resultado etc
+Uma abordagem com modelo BiLSTM (Bidirectional Long Short-Term Memory) e Word2Vec combina técnicas de aprendizado de máquina para o processamento de linguagem natural (PLN). O Word2Vec é um modelo de embedding que converte palavras em vetores numéricos densos, capturando relações semânticas entre elas com base em seu contexto. Já o BiLSTM é uma arquitetura de rede neural recorrente que processa sequências de texto em duas direções: uma do início para o fim e outra do fim para o início, permitindo que o modelo capture informações contextuais de longo alcance, tanto passadas quanto futuras. Juntas, essas abordagens possibilitam uma compreensão profunda e bidirecional do texto, sendo eficazes no nosso objetivo de análise de Hate Speech, em que a classificação pode depender do contexto.
+
+Com o método de undersampling aplicado a nossa base de dados obtemos os seguintes resultados:
+
+Acurácia: 0.6303
+
+Precisão: 0.5741
+
+Recall: 0.6390
+
+F1-Score: 0.6048
+
+Também plotamos uma matriz de confusão que demonstrou um bom equilíbrio entre verdadeiros positivos e verdadeiros negativos, indicando que o modelo conseguiu generalizar razoavelmente bem para ambas as classes.
 
 #### BERT
 
