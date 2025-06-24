@@ -51,7 +51,7 @@ O visualizador padrão do GitHub pode apresentar um erro (`Invalid Notebook: ...
 
 Nesta etapa, foram avaliados cinco modelos diferentes para a tarefa de classificação binária ("Hate" vs "Não Hate"), incluindo modelos baseados em redes neurais tradicionais e em modelos de linguagem (LLMs). Cada notebook contém a implementação completa, incluindo pré-processamento, treinamento e teste de um desses modelos, permitindo comparar seus desempenhos de forma individual.
 
-####Pré-processamento
+### Pré-processamento
 
 Originalmente, o dataset conta com seis categorias diferentes: Não Hate, Racista, Sexista, Homofóbico, Religião e Outros. Ao analisar a distribuição das labels, observa-se uma grande predominância da classe "Não Hate", enquanto as demais estão distribuídas de forma desigual e com representatividade bem menor. 
 
@@ -64,6 +64,26 @@ Por conta do desbalanceamento original, optou-se pela binarização das labels, 
 Apesar dessa binarização, ainda existe um desbalanceamento significativo entre as classes. Por isso, foi aplicado um undersampling na classe majoritária para equilibrar a quantidade de exemplos entre as duas classes.
 
 <img src="https://github.com/user-attachments/assets/6c301868-769f-4548-91a7-16146c9090cf" width="600" />
+
+#### Tokenização
+
+Os textos foram tokenizados de acordo com o modelo utilizado, respeitando os requisitos específicos de cada arquitetura.
+
+### Treinamento dos modelos
+
+Os modelos foram treinados conforme as especificações de cada um, adaptando os parâmetros e configurações quando necessário.
+
+### Avaliação dos Modelos
+
+#### O DO BH
+
+#### BERTweet
+
+#### RoBERTa
+
+#### XLNet-Twitter-Analysis
+
+#### Llama
 
 
 Abaixo, a tabela consolidada com os resultados finais no conjunto de teste.
