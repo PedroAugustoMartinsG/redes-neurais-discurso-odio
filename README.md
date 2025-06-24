@@ -93,7 +93,9 @@ Também plotamos uma matriz de confusão que demonstrou um bom equilíbrio entre
 
 #### BERT
 
-bla bla bla escreve alguma coisa do modelo, resultado etc
+Para a tarefa de detecção de discurso de ódio, foi escolhido testar tambem o modelo BERT (bert-base-uncased), uma arquitetura baseada em transformadores conhecido por seu bom desempenho em tarefas de classificação de texto.
+
+A avaliação foi feita com a partição de teste, que não havia sido vista durante o treinamento, utilizando métricas como acurácia (66,6%), precisão (61,6%), recall (65,3%) e f1-score (63,4%). A matriz de confusão mostrou que o modelo teve um desempenho razoável nas duas classes ("Hate" e "Não Hate"), apesar de alguns erros de classificação. Também foi analisada a curva de perda (loss) por época, que indicou sinais de overfitting, com a perda de validação aumentando ao longo do tempo. No entanto, como foi utilizado o early stopping, o treinamento foi interrompido no momento certo para evitar que o modelo se ajustasse demais aos dados de treino.
 
 #### RoBERTa
 
