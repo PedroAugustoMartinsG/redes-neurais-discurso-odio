@@ -79,7 +79,7 @@ Os modelos foram treinados conforme as especificações de cada um, adaptando os
 
 bla bla bla escreve alguma coisa do modelo, resultado etc
 
-#### BERTweet
+#### BERT
 
 bla bla bla escreve alguma coisa do modelo, resultado etc
 
