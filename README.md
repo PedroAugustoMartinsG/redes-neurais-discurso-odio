@@ -105,8 +105,16 @@ bla bla bla escreve alguma coisa do modelo, resultado etc
 
 #### Llama Meta Hate
 
-bla bla bla escreve alguma coisa do modelo, resultado etc
+A abordagem implementada utiliza o modelo pré-treinado Llama-3-8B-Distil-MetaHate, desenvolvido através de destilação de conhecimento a partir do modelo Llama-3-70B-Instruct. Este modelo especializado emprega metodologias Chain-of-Thought (CoT) para realizar análise contextual profunda de sentenças. O modelo passou por um processo de fine-tuning específico para detecção de hate speech, incorporando técnicas de Parameter-Efficient Fine-Tuning (PEFT) que mantêm alta performance com maior eficiência computacional.
 
+Com o conjunto de dados de teste passados como input para o modelo obtivemos os seguintes resultados:
+
+Acurácia: 0.5147
+Precisão: 0.5084
+Recall: 0.8511
+F1-Score: 0.6365
+
+A análise de performance revelou características interessantes do modelo. A matriz de confusão demonstrou um desequilíbrio significativo, com alta sensibilidade para detectar hate speech (recall de 85.11%) mas baixa especificidade para casos não-hate speech (17.93% de acurácia). O modelo apresentou uma tendência pronunciada para classificar textos como hate speech, resultando em 3.725 falsos positivos contra apenas 674 falsos negativos. Esta característica indica um comportamento conservador do modelo, priorizando a detecção de possíveis casos de discurso de ódio.
 
 
 Abaixo, a tabela consolidada com os resultados finais no conjunto de teste.
