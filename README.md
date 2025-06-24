@@ -155,7 +155,11 @@ Abaixo, a tabela consolidada com os resultados finais no conjunto de teste.
 
 ### Análise e Conclusão da Parte 1
 
-A análise comparativa revela que . Para a Parte 2, será utilizado o modelo [Modelo Vencedor] como base para a fusão com a modalidade de imagem.
+A análise comparativa revela que os modelos baseados em transformadores superam arquiteturas tradicionais como o BiLSTM na tarefa de detecção de discurso de ódio — embora este tenha apresentado desempenho próximo — principalmente devido à sua maior capacidade de capturar o contexto semântico das frases. O desempenho do BERT e do RoBERTa, mesmo com a base sendo reduzida, evidencia que modelos pré-treinados são mais robustos e demandam menos ajuste fino para alcançar bons resultados.
+
+Além disso, os resultados do Llama Meta Hate indicam que, embora modelos especializados possam alcançar alta sensibilidade, existe um trade-off importante entre recall e precisão, e que um alto recall não necessariamente representa um modelo confiável para aplicações práticas, onde falsos positivos podem gerar problemas significativos. Por outro lado, o comportamento do XLNet sugere que arquiteturas mais complexas não garantem melhor desempenho se não forem bem ajustadas ou se a capacidade computacional for limitada
+
+Para a Parte 2, será utilizado o modelo [Modelo Vencedor] como base para a fusão com a modalidade de imagem.
 
 ---
 
