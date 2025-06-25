@@ -46,6 +46,7 @@ O visualizador padrão do GitHub pode apresentar um erro (`Invalid Notebook: ...
 * **[Visualizar Notebook do BiLSTM_Word2Vec_Classifier](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/BiLSTM_Word2Vec_Classifier.ipynb)**
 * **[Visualizar Notebook do BERT](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/BERT.ipynb)**
 * **[Visualizar Notebook do RoBERTa](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/Redes_Neurais_RoBERTa.ipynb)**
+* **[Visualizar Notebook do XLNet](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/XLNet.ipynb)**
 * **[Visualizar Notebook do Llama Meta Hate](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/llamaMetaHate.ipynb)**
 ---
 
