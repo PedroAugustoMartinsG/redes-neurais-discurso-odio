@@ -159,8 +159,6 @@ Ao analisar os resultados observados, percebe-se que os modelos baseados em tran
 
 Além disso, os resultados do Llama Meta Hate indicam que, embora modelos especializados possam alcançar alta sensibilidade, existe um trade-off importante entre recall e precisão, e que um alto recall não necessariamente representa um modelo confiável para aplicações práticas, em que falsos positivos podem gerar problemas significativos. Por outro lado, o comportamento do XLNet sugere que arquiteturas mais complexas não garantem melhor desempenho se não forem bem ajustadas ou se a capacidade computacional for limitada.
 
-Para a Parte 2, será considerado o uso do BERT e RoBERTa como base para a fusão com a modalidade de imagem.
-
 ---
 
 ## Parte 2 (Multimodal)
