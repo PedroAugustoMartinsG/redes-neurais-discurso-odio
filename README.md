@@ -48,6 +48,7 @@ O visualizador padrão do GitHub pode apresentar um erro (`Invalid Notebook: ...
 * **[Visualizar Notebook do RoBERTa](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/Redes_Neurais_RoBERTa.ipynb)**
 * **[Visualizar Notebook do XLNet](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/XLNet.ipynb)**
 * **[Visualizar Notebook do Llama Meta Hate](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/llamaMetaHate.ipynb)**
+* **[Visualizar Notebook do BERT e do SWIM com Multihead Attention](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte2_multimodal/BERT_SWIM%20-%20Detec%C3%A7%C3%A3o%20de%20Discurso%20de%20%C3%93dio.ipynb)**
 ---
 
 ## Resultados da Parte 1 (Unimodal - Texto)
@@ -160,8 +161,68 @@ Ao analisar os resultados observados, percebe-se que os modelos baseados em tran
 
 Além disso, os resultados do Llama Meta Hate indicam que, embora modelos especializados possam alcançar alta sensibilidade, existe um trade-off importante entre recall e precisão, e que um alto recall não necessariamente representa um modelo confiável para aplicações práticas, em que falsos positivos podem gerar problemas significativos. Por outro lado, o comportamento do XLNet sugere que arquiteturas mais complexas não garantem melhor desempenho se não forem bem ajustadas ou se a capacidade computacional for limitada.
 
----
+## Resultados da Parte 2 (Multimodal - Texto + Imagem)
 
-## Parte 2 (Multimodal)
+Nesta etapa, exploramos modelos que combinam informações textuais e visuais para a tarefa de classificação binária ("Hate" vs "Não Hate"). O objetivo é avaliar se a adição de sinais visuais pode melhorar a detecção de discurso de ódio em conteúdos multimodais, como postagens que combinam imagem e legenda. Foram desenvolvidas cinco arquiteturas diferentes, cada uma com estratégias distintas de fusão de embeddings. Todos os modelos foram treinados com os embeddings textuais provenientes do BERT (`bert-base-uncased`) e embeddings visuais extraídos com o Swin Transformer (`swin-tiny-patch4-window7-224`), previamente salvos.
 
-*(Esta seção será desenvolvida para a segunda entrega do trabalho.)*
+### Concatenação simples com MLP
+
+O modelo mais direto combina os embeddings textuais e visuais por concatenação, formando um único vetor de entrada. Esse vetor é passado por uma MLP (rede neural totalmente conectada) que realiza a classificação.
+
+Apesar de sua simplicidade, essa abordagem apresentou bom desempenho inicial, beneficiando-se de menor complexidade e menor risco de overfitting. No entanto, como não modela interações entre texto e imagem, pode deixar passar nuances contextuais importantes.
+
+### Concatenação simples com Focal Loss
+
+Neste modelo, utilizamos a mesma estratégia de concatenação simples dos embeddings, mas com algumas melhorias:
+
+* A rede MLP utiliza camadas lineares com ativação ReLU e dropout.
+* A função de perda utilizada é a **Focal Loss**, que prioriza amostras difíceis por meio dos hiperparâmetros `alpha` e `gamma`.
+
+O treinamento inclui early stopping e avaliação dinâmica em múltiplos thresholds para encontrar a melhor combinação de parâmetros que maximize o F1-score macro. O modelo final é reavaliado no conjunto de validação com matriz de confusão e relatório de classificação.
+
+Essa abordagem teve ganhos notáveis na identificação da classe minoritária, com melhora significativa no recall, mas ainda apresentou trade-offs em relação à precisão.
+
+### Multihead Attention
+
+Este modelo aplica **atenção multi-cabeças** para integrar embeddings textuais (BERT) e visuais (Swin). Ambos são projetados para um espaço vetorial comum (`hidden_dim=1024`) e concatenados como uma sequência de dois tokens (texto + imagem). A camada `MultiheadAttention` permite que as modalidades interajam diretamente, capturando relações cruzadas.
+
+Após a atenção, aplica-se **pooling médio** sobre os dois tokens, seguido por uma rede feedforward com normalização, ReLU e dropout. A saída é passada por um classificador MLP que prevê a classe final.
+
+Essa arquitetura obteve o **melhor desempenho geral**, com **F1-score macro de 0.63**, equilibrando precisão e recall nas duas classes. Sua força está na capacidade de capturar interações relevantes entre texto e imagem sem o custo computacional de Transformers completos.
+
+A atenção possibilita que o modelo atribua pesos diferenciados às modalidades, capturando interações mais sutis entre elas. Como resultado, o modelo apresentou equilíbrio entre precisão e recall nas duas classes, indicando boa generalização.
+
+### Baseado em Transformers
+
+Esse modelo usa uma abordagem ainda mais avançada, tratando os embeddings das duas modalidades como uma sequência de dois tokens e processando-os com um Transformer Encoder completo, com múltiplas camadas de autoatenção e positional embeddings. Ele é projetado para capturar relações contextuais profundas entre as modalidades, semelhante aos Transformers usados em NLP. Após o encoding, aplica-se um pooling médio seguido de um classificador MLP. Embora poderoso, sua complexidade pode levar ao overfitting em datasets pequenos ou desbalanceados, como é o caso. Por fim, o modelo demonstrou potencial, com desempenho razoável no conjunto de validação, mas levemente inferior ao Multihead Attention em termos de F1-score macro, e com um custo computacional muito alto.
+
+### Desempenho no Conjunto de Validação (Multimodal: Texto + Imagem)
+
+| Métrica                  | Concat. + MLP   | Concat. + Focal Loss | Multihead Attention | Baseado em Transformers |
+| ------------------------ | :-------------: | :------------------: | :-----------------: | :---------------------: |
+| **F1 (Hate)**            |     **0.62**    |         0.60         |         0.61        |           0.61          |
+| **Recall (Hate)**        |     **0.62**    |         0.57         |         0.60        |           0.60          |
+| **Precisão (Hate)**      |       0.61      |       **0.63**       |         0.62        |           0.61          |
+| **F1-Score Macro**       |       0.65      |         0.65         |       **0.65**      |           0.65          |
+| **Acurácia Geral**       |       0.65      |         0.66         |       **0.66**      |           0.65          |
+| **Melhor Val F1**        |      0.6506     |        0.6504        |      **0.6511**     |          0.6471         |
+| **Melhor Época**         |        1        |           —          |          2          |            3            |
+| **Loss na Melhor Época** |      0.4417     |           —          |        0.4247       |        **0.4110**       |
+
+### Desempenho no Conjunto de Teste (Multimodal: Texto + Imagem)
+
+Multihead Attention obteve desempenho equilibrado entre as classes "hate" e "não hate", com acurácia geral de 63%. A classe "não hate" teve maior precisão (0.69), indicando menos falsos positivos, enquanto a classe "hate" apresentou maior recall (0.65), mostrando boa capacidade de identificar discursos de ódio, embora com mais falsos positivos. O F1-score macro de 0.63 indica desempenho médio consistente entre as classes, o que é desejável em tarefas com importância equivalente para ambas. Esses resultados refletem que a atenção multi-cabeça consegue capturar relações relevantes nos dados, mas ainda há espaço para melhorias, especialmente na distinção entre as classes em cenários ambíguos. A Matriz de Confusão é exibida abaixo.
+
+![Matriz de Confusão no Conjunto de Teste](https://github.com/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte2_multimodal/confusion_matrix.png?raw=true)
+
+
+## Concusão
+
+Este trabalho investigou diferentes abordagens para a detecção de discurso de ódio, tanto no formato unimodal (texto) quanto multimodal (texto + imagem). Os resultados demonstraram que modelos baseados em transformadores, como BERT e RoBERTa, oferecem desempenho superior em relação a arquiteturas tradicionais como BiLSTM, especialmente em tarefas puramente textuais, devido à sua capacidade de capturar melhor o contexto semântico.
+
+Na etapa multimodal, os modelos que combinam embeddings textuais e visuais também apresentaram resultados promissores. A arquitetura com atenção multi-cabeça foi a que obteve o melhor desempenho geral, alcançando equilíbrio entre precisão e recall, além de uma boa acurácia. Isso mostra que a combinação de texto e imagem pode ser vantajosa para detectar nuances de discurso de ódio em conteúdos multimodais, como postagens em redes sociais.
+
+No entanto, limitações computacionais representaram um desafio significativo ao longo do trabalho. Restrições de hardware dificultaram a exploração completa de modelos mais robustos, como Transformers com múltiplas camadas e fine-tuning mais aprofundado. Com maior capacidade computacional, seria possível aplicar arquiteturas mais sofisticadas, ajustar melhor os hiperparâmetros e, possivelmente, alcançar resultados ainda mais expressivos.
+
+Apesar dessas limitações, os modelos propostos apresentaram desempenho satisfatório, com um bom trade-off entre acurácia, capacidade de generalização e custo computacional. Assim, a abordagem desenvolvida mostra-se viável e pode ser útil como ferramenta auxiliar para identificação automatizada de discursos de ódio, contribuindo para a moderação de conteúdo e promoção de ambientes digitais mais seguros.
+
