@@ -216,7 +216,7 @@ Multihead Attention obteve desempenho equilibrado entre as classes "hate" e "nã
 ![Matriz de Confusão no Conjunto de Teste](https://github.com/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte2_multimodal/confusion_matrix.png?raw=true)
 
 
-## Concusão
+## Conclusão
 
 Este trabalho investigou diferentes abordagens para a detecção de discurso de ódio, tanto no formato unimodal (texto) quanto multimodal (texto + imagem). Os resultados demonstraram que modelos baseados em transformadores, como BERT e RoBERTa, oferecem desempenho superior em relação a arquiteturas tradicionais como BiLSTM, especialmente em tarefas puramente textuais, devido à sua capacidade de capturar melhor o contexto semântico.
 
