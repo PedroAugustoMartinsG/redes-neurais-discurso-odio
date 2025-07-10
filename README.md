@@ -48,7 +48,7 @@ O visualizador padrão do GitHub pode apresentar um erro (`Invalid Notebook: ...
 * **[Visualizar Notebook do RoBERTa](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/Redes_Neurais_RoBERTa.ipynb)**
 * **[Visualizar Notebook do XLNet](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/XLNet.ipynb)**
 * **[Visualizar Notebook do Llama Meta Hate](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte1_texto/llamaMetaHate.ipynb)**
-* **[Visualizar Notebook do BERT e do SWIM com Multihead Attention](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte2_multimodal/BERT_SWIM%20-%20Detec%C3%A7%C3%A3o%20de%20Discurso%20de%20%C3%93dio.ipynb)**
+* **[Visualizar Notebook do BERT e do SWIN com Multihead Attention](https://nbviewer.org/github/amandajoioso/redes-neurais-discurso-odio/blob/main/notebooks/parte2_multimodal/BERT_SWIM%20-%20Detec%C3%A7%C3%A3o%20de%20Discurso%20de%20%C3%93dio.ipynb)**
 ---
 
 ## Resultados da Parte 1 (Unimodal - Texto)
