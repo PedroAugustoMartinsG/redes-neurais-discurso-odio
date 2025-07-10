@@ -165,13 +165,13 @@ Além disso, os resultados do Llama Meta Hate indicam que, embora modelos especi
 
 Nesta etapa, exploramos modelos que combinam informações textuais e visuais para a tarefa de classificação binária ("Hate" vs "Não Hate"). O objetivo é avaliar se a adição de sinais visuais pode melhorar a detecção de discurso de ódio em conteúdos multimodais, como postagens que combinam imagem e legenda. Foram desenvolvidas cinco arquiteturas diferentes, cada uma com estratégias distintas de fusão de embeddings. Todos os modelos foram treinados com os embeddings textuais provenientes do BERT (`bert-base-uncased`) e embeddings visuais extraídos com o Swin Transformer (`swin-tiny-patch4-window7-224`), previamente salvos.
 
-### Concatenação simples com MLP
+### MLP
 
 O modelo mais direto combina os embeddings textuais e visuais por concatenação, formando um único vetor de entrada. Esse vetor é passado por uma MLP (rede neural totalmente conectada) que realiza a classificação.
 
 Apesar de sua simplicidade, essa abordagem apresentou bom desempenho inicial, beneficiando-se de menor complexidade e menor risco de overfitting. No entanto, como não modela interações entre texto e imagem, pode deixar passar nuances contextuais importantes.
 
-### Concatenação simples com Focal Loss
+### MLP com Focal Loss
 
 Neste modelo, utilizamos a mesma estratégia de concatenação simples dos embeddings, mas com algumas melhorias:
 
@@ -198,7 +198,7 @@ Esse modelo usa uma abordagem ainda mais avançada, tratando os embeddings das d
 
 ### Desempenho no Conjunto de Validação (Multimodal: Texto + Imagem)
 
-| Métrica                  | Concat. + MLP   | Concat. + Focal Loss | Multihead Attention | Baseado em Transformers |
+| Métrica                  |       MLP       |   MLP + Focal Loss   | Multihead Attention | Baseado em Transformers |
 | ------------------------ | :-------------: | :------------------: | :-----------------: | :---------------------: |
 | **F1 (Hate)**            |     **0.62**    |         0.60         |         0.61        |           0.61          |
 | **Recall (Hate)**        |     **0.62**    |         0.57         |         0.60        |           0.60          |
