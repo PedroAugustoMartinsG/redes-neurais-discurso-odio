@@ -205,7 +205,6 @@ Esse modelo usa uma abordagem ainda mais avançada, tratando os embeddings das d
 | **Precisão (Hate)**      |       0.61      |       **0.63**       |         0.62        |           0.61          |
 | **F1-Score Macro**       |       0.65      |         0.65         |       **0.65**      |           0.65          |
 | **Acurácia Geral**       |       0.65      |         0.66         |       **0.66**      |           0.65          |
-| **Melhor Val F1**        |      0.6506     |        0.6504        |      **0.6511**     |          0.6471         |
 | **Melhor Época**         |        1        |           —          |          2          |            3            |
 | **Loss na Melhor Época** |      0.4417     |           —          |        0.4247       |        **0.4110**       |
 
